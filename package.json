@@ -4,6 +4,8 @@
   "description": "A delivery service where user can choose or design his/her own route.",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack.config.js --mode production",
+    "start": "npm i && npm run build && babel-node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +18,23 @@
   "bugs": {
     "url": "https://github.com/GovindRao-WD/Delivery-Service/issues"
   },
-  "homepage": "https://github.com/GovindRao-WD/Delivery-Service#readme"
+  "homepage": "https://github.com/GovindRao-WD/Delivery-Service#readme",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "express": "^4.18.1",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
+  }
 }
