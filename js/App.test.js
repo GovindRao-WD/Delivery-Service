@@ -50,3 +50,21 @@ describe("Checking cost for routes", () => {
     expect(townGraph.isPathAvailable("A", "D", ["F"])).toBe("No Such Route");
   });
 });
+
+describe("calculating possible routes", () => {
+  test("The number of possible delivery routes from E to D with a maximum of 4 stop without using the same route twice in a delivery route", () => {
+    const townGraph = new TownGraph();
+    townGraph.createTownGraph(routesString);
+    let routeListObject = {};
+    townGraph.numberOfRoutes("E", "D", {}, routeListObject);
+    expect(Object.keys(routeListObject).length).toBe(3);
+  });
+
+  test("The number of possible delivery routes from E to D with a maximum of 4 stop without using the same route twice in a delivery route", () => {
+    const townGraph = new TownGraph();
+    townGraph.createTownGraph(routesString);
+    let routeListObject = {};
+    townGraph.numberOfRoutes("E", "E", {}, routeListObject);
+    expect(Object.keys(routeListObject).length).toBe(5);
+  });
+});
