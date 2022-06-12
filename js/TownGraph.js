@@ -79,6 +79,30 @@ class TownGraph {
       return "No Such Route";
     }
   };
+
+  numberOfRoutes = (source, destination, visited, routeListObj) => {
+    if (source === destination) {
+      routeListObj[Object.keys(routeListObj).length] = `Route ${
+        Object.keys(routeListObj).length + 1
+      }`;
+      return;
+    }
+    visited[source] = true;
+
+    let destinationsForTown = this.adjacency[source];
+
+    destinationsForTown.forEach((each) => {
+      if (!visited[each.destination]) {
+        this.numberOfRoutes(
+          each.destination,
+          destination,
+          visited,
+          routeListObj
+        );
+      }
+    });
+    visited[source] = false;
+  };
 }
 
 export default TownGraph;
