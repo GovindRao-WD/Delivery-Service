@@ -1,0 +1,20 @@
+{
+  "name": "delivery-service",
+  "version": "1.0.0",
+  "description": "A delivery service where user can choose or design his/her own route.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GovindRao-WD/Delivery-Service.git"
+  },
+  "keywords": [],
+  "author": "Juttu Govind Rao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GovindRao-WD/Delivery-Service/issues"
+  },
+  "homepage": "https://github.com/GovindRao-WD/Delivery-Service#readme"
+}
