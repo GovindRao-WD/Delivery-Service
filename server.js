@@ -11,5 +11,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(8082, () => {
-  console.log("Front end application server started");
+  console.log("Web Application server started");
 });
