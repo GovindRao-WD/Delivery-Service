@@ -18,6 +18,8 @@ export default (props) => {
   const [destinationTown, setDestinationTown] = useState("");
   const [stoppageTowns, setStoppageTowns] = useState([]);
   const [stoppageTownList, setStoppageTownList] = useState([]);
+  const [cost, setCost] = useState("");
+  const [routeCount, setRouteCount] = useState("");
 
   useEffect(async () => {
     const response = await fetch("routes.text");
@@ -73,15 +75,33 @@ export default (props) => {
     setStoppageTownList(stoppageTownListFromState);
   };
 
-  const reset = () => {
+  const reset = (e) => {
+    e.preventDefault();
     setSourceTown("");
     setDestinationTown("");
     setStoppageTowns([]);
     setStoppageTownList([]);
     setDestinationTowns([]);
+    setCost("");
+    setRouteCount("");
     const townGraph = new TownGraph();
     townGraph.createTownGraph(townsRoutes);
     createSourceTownList(Object.keys(townGraph.adjacency));
+  };
+
+  const calculateCost = (e) => {
+    e.preventDefault();
+    const townGraph = new TownGraph();
+    townGraph.createTownGraph(townsRoutes);
+    let response = townGraph.isPathAvailable(
+      sourceTown,
+      destinationTown,
+      stoppageTowns
+    );
+    setCost(response);
+    let routeListObject = {};
+    townGraph.numberOfRoutes(sourceTown, destinationTown, {}, routeListObject);
+    setRouteCount(Object.keys(routeListObject).length);
   };
 
   return (
@@ -110,7 +130,7 @@ export default (props) => {
             <div class="stops-content">
               <SelectDropDown
                 eleName="stops"
-                disabled={sourceTown === ""}
+                disabled={sourceTown === "" || destinationTown === ""}
                 onChange={(value) => selectStoppage(value)}
                 value={""}
                 towns={stoppageTownList}
@@ -118,7 +138,7 @@ export default (props) => {
             </div>
             <div class="submit-btn-content">
               {stoppageTowns.length > 0 && (
-                <div>
+                <div class="stops-text">
                   Stops : {stoppageTowns.map((each) => `${TOWN_NAMES[each]} `)}
                 </div>
               )}
@@ -127,10 +147,25 @@ export default (props) => {
                 type="reset"
                 value="Reset"
                 name="reset"
-                onClick={() => reset()}
+                onClick={(e) => reset(e)}
               />
-              <input type="submit" value="Calculate Cost" name="submit" />
+              <input
+                type="submit"
+                value="Calculate Cost"
+                name="submit"
+                onClick={(e) => calculateCost(e)}
+              />
             </div>
+            {cost !== "" && (
+              <div class="result-content">
+                {cost !== "No Route Found"
+                  ? `The cost for chosen route : ${cost}`
+                  : cost}
+                <br />
+                {routeCount !== "" &&
+                  `Total Path between ${TOWN_NAMES[sourceTown]} and ${TOWN_NAMES[destinationTown]} is ${routeCount}`}
+              </div>
+            )}
           </form>
         </div>
       </div>
@@ -147,7 +182,6 @@ const SelectDropDown = (props) => {
   } else if (props.eleName === "stops") {
     placeholderText = "Select Stops";
   }
-  console.log(props);
   return (
     <select
       name={props.eleName}
@@ -155,7 +189,7 @@ const SelectDropDown = (props) => {
       value={props.value}
       disabled={props.disabled}
     >
-      <option value="" disabled selected>
+      <option value="" disabled selected={props.value === ""}>
         {placeholderText}
       </option>
       {props.towns.map((each) => {

@@ -60,7 +60,7 @@ describe("calculating possible routes", () => {
     expect(Object.keys(routeListObject).length).toBe(3);
   });
 
-  test("The number of possible delivery routes from E to D with a maximum of 4 stop without using the same route twice in a delivery route", () => {
+  test("The number of possible delivery routes from E to E without using the same route twice in the delivery route", () => {
     const townGraph = new TownGraph();
     townGraph.createTownGraph(routesString);
     let routeListObject = {};

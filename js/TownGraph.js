@@ -56,6 +56,7 @@ class TownGraph {
             });
             townStack.push(nextStop);
             if (!stopAvailable) {
+              routeCost = 0;
               break;
             }
           }
