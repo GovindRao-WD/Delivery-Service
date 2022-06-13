@@ -49,6 +49,11 @@ select[name="stops"] {
   margin-top: 35px;
 }
 
+.stops-text {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
 .submit-btn-content {
   margin-top: 100px;
 }
@@ -69,4 +74,10 @@ input[name="submit"] {
 
 input[name="reset"] {
   margin-right: 15px;
+}
+
+.result-content {
+  margin-top: 24px;
+  font-size: 24px;
+  font-weight: 600;
 }
