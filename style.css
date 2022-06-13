@@ -17,7 +17,56 @@ body {
 
 .content {
   background-color: #04be8c;
-  height: 300px;
+  height: 500px;
   width: 80%;
   margin: auto;
+}
+
+.main-inputs-div {
+  padding-top: 70px;
+}
+
+select[name="source"] {
+  margin-right: 15%;
+}
+
+select[name="destination"] {
+  margin-left: 15%;
+}
+
+select[name="source"],
+select[name="destination"],
+select[name="stops"] {
+  width: 30%;
+  height: 50px;
+  border-radius: 5px;
+  font-family: "poppins";
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.stops-content {
+  margin-top: 35px;
+}
+
+.submit-btn-content {
+  margin-top: 100px;
+}
+
+input[name="submit"],
+input[name="reset"] {
+  height: 50px;
+  font-family: "poppins";
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+input[name="submit"] {
+  margin-left: 15px;
+}
+
+input[name="reset"] {
+  margin-right: 15px;
 }
