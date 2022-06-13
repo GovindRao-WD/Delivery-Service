@@ -1,5 +1,3 @@
-import fs from "fs";
-
 class TownGraph {
   constructor() {
     this.adjacency = {};
